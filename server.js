@@ -2,9 +2,17 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 
+// Додаємо CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://vaniafotkiloh.netlify.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(express.json());
 
-// Доданий GET-маршрут для кореня
+// GET-маршрут для кореня
 app.get('/', (req, res) => {
   res.send('Сервер працює! Перевір /log-ip через POST-запит.');
 });
@@ -22,7 +30,6 @@ app.post('/log-ip', (req, res) => {
   });
 });
 
-// Запуск сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Сервер запущено на порті ${PORT}`);
